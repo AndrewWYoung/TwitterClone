@@ -1,0 +1,39 @@
+<% include partials/header %>
+<div class="container">
+    <header class="jumbotron" style="margin: 25px 0px">
+        <h1 style="text-align: center">Create a New Tweet</a>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/tweets" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" placeholder="name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="tweet" placeholder="tweet">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <div class="row" width: 75%;">
+        <% tweets.forEach(function(tweet){ %>
+            <div class="row" style="border: 1px solid black; margin-bottom: 15px;">
+                <div class="col-md-1" >
+                    <div class="thumbnail" style="height: 50px; width: 50px;">
+                        <img src="<%= tweet.image %>">
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <p><%= tweet.name %></p>
+                    <h3><%= tweet.tweet %></h3>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+</div>
+
+
+<%include partials/footer %>
