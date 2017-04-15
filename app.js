@@ -77,6 +77,18 @@ app.post("/tweets", function(req, res) {
     });
 });
 
+// SHOW /signup - Show new user signup form
+app.get('/signup', function(req, res){
+    res.render('user/signup');
+});
+
+// CREATE /signup - Create new user, Log user in, then redirect
+app.post('/signup', function(req, res){
+    // Needs Auth & DB model made before page can work
+    res.send('Signup form under construction');
+
+});
+
 // NEW - as of now, since the tweet form is already on the home page, there's no need to create a route to get to the form
 // if interested, the code would simply look like the following:
 //
@@ -98,21 +110,6 @@ app.post("/tweets", function(req, res) {
 //         }
 //     });
 // })
-
-// app.get("/tweets", function(req, res){
-//     res.render("tweets", {tweets : tweets});
-// });
-
-// get data from form and add to tweets array 
-// redirect back to tweets page
-app.post("/tweets", function(req, res) {
-    var name = req.body.name;
-    var image = twitterIcon;
-    var tweet = req.body.tweet;
-    var newTweet = { name: name, image: twitterIcon, tweet: tweet };
-    tweets.push(newTweet);
-    res.redirect("/tweets");
-});
 
 // setup server for localhost on port 3001
 // localhost:3001/
