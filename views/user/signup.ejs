@@ -4,23 +4,20 @@
 			<h3>Sign up</h3>
 			<form action='/signup' method='POST'>
 				<div class='form-group'>
-				<label for='name'>Username:</label>
-				<input type='text' name='username' placeholder='username' class='form-control'>
+				  <label for='name'>Username:</label>
+				  <input type='text' name='username' placeholder='username' class='form-control'>
 				</div>
-
+        <div class='form-group'>
+          <label for='email'>Email:</label>
+          <input type='email' name='email' placeholder='email' class='form-control'>
+        </div>
 				<div class='form-group'>
-				<label for='email'>Email:</label>
-				<input type='email' name='email' placeholder='email' class='form-control'>
+				  <label for='password'>Password:</label>
+				  <input type='password' name='password' placeholder='password' class='form-control'>
 				</div>
-
-				<div class='form-group'>
-				<label for='password'>Password:</label>
-				<input type='password' name='password' placeholder='password' class='form-control'>
-				</div>
-
 				<input type='submit' value='Sign Up' class='btn btn-default'>
 			</form>
 		</div>
 	</div>
 
-<% include ../partials/footer %>
+    <% include ../partials/footer %>
