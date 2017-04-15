@@ -1,7 +1,7 @@
 {
   "name": "twitter-clone",
   "version": "1.0.0",
-  "description": "",
+  "description": "Free Code Camp group project to create a Twitter Clone",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.1",
