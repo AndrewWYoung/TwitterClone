@@ -9,9 +9,16 @@
                         <h3>A Twitter Clone</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
+                            <% if(!currentUser) { %>
                             <li>
-                                <a href="#" class="btn btn-default btn-lg"><span class="suit">&#x2660; </span> <span class="network-name">Sign Up!</span></a>
+                                <a href="/signup" class="btn btn-default btn-lg"><span class="suit">&#x2660; </span> <span class="network-name">Sign Up!</span></a>
                             </li>
+                            <% } else { %>
+                            <li>
+                                <a href="/tweets" class="btn btn-default btn-lg"><span class="suit">&#x2660; </span> <span >View Tweets!</span></a>
+                            </li>
+                            <% } %>
+                            
                         </ul>
                     </div>
                 </div>
