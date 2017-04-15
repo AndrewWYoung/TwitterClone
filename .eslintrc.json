@@ -9,7 +9,7 @@
     "rules": {
         "indent": [
             "error",
-            2
+            4
         ],
         "linebreak-style": [
             "error",
@@ -17,11 +17,11 @@
         ],
         "quotes": [
             "error",
-            "single"
+            "double"
         ],
         "semi": [
             "error",
-            "never"
+            "always"
         ],
         "no-unexpected-multiline": 2,
         "no-unreachable": 2,
