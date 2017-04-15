@@ -6,13 +6,13 @@ const User = require("../models/user.js");
 
 router.use(require("body-parser").urlencoded({ extended: true }));
 
-// SHOW /signup - Show new user signup form
-router.get("/signup", function(req, res){
+// SHOW /register - Show new user signup form
+router.get("/register", function(req, res){
     res.render("user/signup");
 });
 
 // CREATE /signup - Create new user, Log user in, then redirect
-router.post("/signup", function(req, res){
+router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username, email: req.body.email});
     User.register(newUser, req.body.password, function(err, user){
     	if(err){
