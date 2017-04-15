@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-   <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Dealer</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
     <!-- FontAwesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/stylesheets/main.css">
-    
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -25,59 +26,69 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
-          <div id="cards">
-            <div class="card">
-              <span class="black">♠</span>
+                <a class="navbar-brand" href="#">
+                    <div id="cards">
+                        <div class="card">
+                            <span class="black">♠</span>
+                        </div>
+                        <div class="card">
+                            <span class="red">♦</span>
+                        </div>
+                        <div class="card">
+                            <span class="black">♣</span>
+                        </div>
+                        <div class="card">
+                            <span class="red">♥</span>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="card">
-              <span class="red">♦</span>
-            </div>
-            <div class="card">
-              <span class="black">♣</span>
-            </div>
-            <div class="card">
-              <span class="red">♥</span>
-            </div>
-          </div>
-        </a>
-      </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-          <li><a href="#about"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a></li>
-          <li><a href="#contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a></li>
-        </ul>
-        
-        <div class="navbar-form navbar-right">
-          <div class="input-group form-group">
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-btn">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li><a href="#about"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a></li>
+                    <li><a href="#contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a></li>
+                </ul>
+
+                <div class="navbar-form navbar-right">
+                    <div class="input-group form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
               <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </span>
-          </div><!-- /.input-group -->
-          <button class="btn btn-default miniProfile"></button>
-          <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        </div><!-- /.navbar-form -->
+                    </div>
+                    <!-- /.input-group -->
+                    <button class="btn btn-default miniProfile"></button>
+                    <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                </div>
+                <!-- /.navbar-form -->
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="/signup">Sign Up</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
+                <ul class="nav navbar-nav navbar-right">
 
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+                    <% if(!currentUser){ %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Sign Up</a>
+                            <% } else { %>
+                                <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                                <li><a href="/logout">Logout</a></li>
+                                <% } %>
+
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
