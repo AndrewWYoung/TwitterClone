@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
-var Tweet = require("./models/tweet");
-var Comment = require("./models/comment");
+const Tweet = require("./models/tweet");
+const Comment = require("./models/comment");
 
-var data = [{
+var data = [
+    {
         name: "Cloud's Rest",
         image: "https://img.clipartfest.com/672f88933a5add7f407647d3ac640baf_circle-twitter-icon-twitter-icon-clipart_512-512.png",
         tweet: "blah blah blah"
@@ -17,7 +17,7 @@ var data = [{
         image: "https://img.clipartfest.com/672f88933a5add7f407647d3ac640baf_circle-twitter-icon-twitter-icon-clipart_512-512.png",
         tweet: "blah blah blah"
     }
-]
+];
 
 function seedDB() {
     //Remove all tweets
@@ -30,7 +30,7 @@ function seedDB() {
         data.forEach(function(seed) {
             Tweet.create(seed, function(err, tweet) {
                 if (err) {
-                    console.log(err)
+                    console.log(err);
                 } else {
                     console.log("added a tweet");
                     //create a comment

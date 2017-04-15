@@ -16,7 +16,7 @@ app.use(express.static(__dirname + "/public"));
 seedDB();
 
 /* add our routes */
-app.use('/', routes);
+app.use("/", routes);
 
 // INDEX - show all tweets 
 app.get("/tweets", function(req, res) {
@@ -87,6 +87,6 @@ app.post('/signup', function(req, res){
 // })
 
 // setup server for localhost on port 3001
-app.listen(PORT, 'localhost', function() {
+app.listen(PORT, "localhost", function() {
     console.log(`Twitter Clone Server Started on port ${PORT}`);
 });
