@@ -13,13 +13,13 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 /* add our routes */
-app.use('/', routes);
+app.use("/", routes);
 
 /* seed database with sample tweets */
 seedDB();
 
 
 // setup server for localhost on port 3001
-app.listen(PORT, 'localhost', function() {
+app.listen(PORT, "localhost", function() {
     console.log(`Twitter Clone Server Started on port ${PORT}`);
 });
