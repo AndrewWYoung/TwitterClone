@@ -26,12 +26,9 @@
                         </div>
                     </div>
                     <div class="col-md-11">
-                        <p>
-                            <%= tweet.name %>
-                        </p>
-                        <h3>
-                            <%= tweet.tweet %>
-                        </h3>
+                        <p><%= tweet.name %></p>
+                        <h3><%= tweet.tweet %></h3>
+                        <p><%= tweet.date.toString().substring(0, 21) %></p>
                     </div>
                 </div>
                 <% }); %>
@@ -40,4 +37,4 @@
     </div>
 
 
-    <%include partials/footer %>
+<%include partials/footer %>
