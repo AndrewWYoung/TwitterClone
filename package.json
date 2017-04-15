@@ -1,7 +1,7 @@
 {
   "name": "twitter-clone",
   "version": "1.0.0",
-  "description": "",
+  "description": "Free Code Camp group project to create a Twitter Clone",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.1",
@@ -9,10 +9,14 @@
     "express": "^4.15.2",
     "mongoose": "^4.9.4"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "lint": "eslint ."
   },
   "author": "Andrew Young",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  }
 }

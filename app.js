@@ -1,47 +1,22 @@
-var express = require("express"),
+const express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    Tweet = require("./models/tweet"),
+    routes = require("./routes"),
+    PORT = 3001,
     seedDB = require("./seeds");
 
+/* configure server */
 mongoose.connect("mongodb://localhost/twitter_clone_v3");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+
+/* seed database with sample tweets */
 seedDB();
 
-// var Tweet = mongoose.model("Tweet", tweetSchema);
-
-// Creates test objects (tweets) for the DB 
-// Tweet.create(
-//     {
-//         name: "Andrew",
-//         image: "https://img.clipartfest.com/672f88933a5add7f407647d3ac640baf_circle-twitter-icon-twitter-icon-clipart_512-512.png",
-//         tweet: "This is a test tweet"
-//     },
-//     function(err, tweet){
-//         if(err){
-//             console.log(err);
-//         } else {
-//             console.log("NEWLY CREATED TWEET");
-//             console.log(tweet);
-//         }
-//     }
-// );
-
-// // Array of tweets since there's not database
-var twitterIcon = "https://img.clipartfest.com/672f88933a5add7f407647d3ac640baf_circle-twitter-icon-twitter-icon-clipart_512-512.png";
-// var tweets = [
-//     {name: "Christopher", image: twitterIcon, tweet: "insert lorem ipsum here"},
-//     {name: "Andrew", image: twitterIcon, tweet: "insert lorem ipsum here"},
-//     {name: "Oscar", image: twitterIcon, tweet: "lorem ipsum!"},
-// ]
-
-// Landing Page  
-app.get("/", function(req, res) {
-    res.render("landing");
-});
+/* add our routes */
+app.use("/", routes);
 
 // INDEX - show all tweets 
 app.get("/tweets", function(req, res) {
@@ -50,6 +25,10 @@ app.get("/tweets", function(req, res) {
         if (err) {
             console.log(err);
         } else {
+            // Sort tweets by most recent showing first
+            allTweets.sort(function(a, b) { 
+                return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); 
+            });
             res.render("index", { tweets: allTweets });
         }
     });
@@ -71,6 +50,18 @@ app.post("/tweets", function(req, res) {
             res.redirect("/tweets");
         }
     });
+});
+
+// SHOW /signup - Show new user signup form
+app.get('/signup', function(req, res){
+    res.render('user/signup');
+});
+
+// CREATE /signup - Create new user, Log user in, then redirect
+app.post('/signup', function(req, res){
+    // Needs Auth & DB model made before page can work
+    res.send('Signup form under construction');
+
 });
 
 // NEW - as of now, since the tweet form is already on the home page, there's no need to create a route to get to the form
@@ -95,23 +86,7 @@ app.post("/tweets", function(req, res) {
 //     });
 // })
 
-// app.get("/tweets", function(req, res){
-//     res.render("tweets", {tweets : tweets});
-// });
-
-// get data from form and add to tweets array 
-// redirect back to tweets page
-app.post("/tweets", function(req, res) {
-    var name = req.body.name;
-    var image = twitterIcon;
-    var tweet = req.body.tweet;
-    var newTweet = { name: name, image: twitterIcon, tweet: tweet };
-    tweets.push(newTweet);
-    res.redirect("/tweets");
-});
-
 // setup server for localhost on port 3001
-// localhost:3001/
-app.listen(3001, 'localhost', function() {
-    console.log("Twitter Clone Server Started...");
+app.listen(PORT, "localhost", function() {
+    console.log(`Twitter Clone Server Started on port ${PORT}`);
 });
