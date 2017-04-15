@@ -57,8 +57,8 @@
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-          <li><a href="#about"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a></li>
-          <li><a href="#contact"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a></li>
         </ul>
         
         <div class="navbar-form navbar-right">
@@ -73,9 +73,12 @@
         </div><!-- /.navbar-form -->
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="/signup">Sign Up</a></li>
-          <li><a href="#">Logout</a></li>
+          <% if(!currentUser){ %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+          <% } else { %>
+            <li><a href="/logout">Logout</a></li>
+          <% } %>
         </ul>
 
       </div><!-- /.navbar-collapse -->
