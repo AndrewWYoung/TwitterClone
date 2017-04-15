@@ -11,6 +11,10 @@ var tweetSchema = new mongoose.Schema({
         retweets: {type: Number, default: 0},
         replies: {type: Number, default: 0}
     },
+    user: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
