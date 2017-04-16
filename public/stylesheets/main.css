@@ -1,3 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 /* NAVBAR */
 .navbar-brand {
     text-align: center;
@@ -5,6 +13,17 @@
     left: 50%;
     position: absolute;
     width: 200px;
+}
+.navbar-default {
+    background-color: #0084b4;
+    border-color: #0084b4;
+}
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: black;
+    background-color: transparent;
 }
 
 span.glyphicon{
@@ -152,34 +171,19 @@ span.glyphicon{
 #landing {
 	width: 100%;
     min-height: 100%;
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    margin: 0px;
-    margin-top: -1.2%;
-    padding-bottom: 1.022%;
-    text-align: center;
-    color: #f8f8f8;
-    background: url("/images/background.jpg");
     background-size: cover;
+    position: relative;
 }
 
 .intro-message {
-    position: relative;
     padding-top: 17%;
     padding-bottom: 20%;
 }
-.intro-message > h1 {
-	margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-size: 5em;
-}
-.intro-divider {
-    width: 400px;
-    border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+
+.twitter {
+    background-color: #0084b4;
+    color: white;
+    box-shadow: 7px 7px 7px #888888;
 }
 
 @media(max-width:767px) {
