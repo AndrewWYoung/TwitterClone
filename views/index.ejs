@@ -5,10 +5,7 @@
                 <div style="width: 30%; margin: 25px auto;">
                     <form action="/tweets" method="POST">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="name" placeholder="name">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="tweet" placeholder="tweet">
+                            <input class="form-control" type="text" name="tweet" placeholder="Tweet">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
@@ -26,15 +23,20 @@
                         </div>
                     </div>
                     <div class="col-md-11">
-                        <p><%= tweet.name %></p>
+                        <p><%= tweet.user.username %></p>
                         <h3><%= tweet.tweet %></h3>
                         <p><%= tweet.date.toString().substring(0, 21) %></p>
-
-                        <!-- We have to use ?_method (method-override) to use the DELETE route
-                             that we are using in our routes/index.js file -->
-                        <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
-                            <button class='btn btn-danger'>Delete</button>
-                        </form>
+                        <% if(currentUser){ %>
+                            <% if(currentUser.username == tweet.user.username){ %>
+                                <!-- 
+                                We have to use ?_method (method-override) to use the DELETE route
+                                that we are using in our routes/index.js file 
+                                -->
+                                <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
+                                    <button class='btn btn-danger'>Delete</button>
+                                </form>  
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
                 <% }); %>
