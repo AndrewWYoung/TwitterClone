@@ -7,7 +7,7 @@ const express               = require("express"),
     mongoose                = require("mongoose"),
     routes                  = require("./routes"),
     User                    = require("./models/user"),
-    path                    = require('path'),
+    path                    = require("path"),
     PORT                    = 3001,
     seedDB                  = require("./seeds"),
     app                     = express();
@@ -16,7 +16,7 @@ const express               = require("express"),
 mongoose.connect("mongodb://localhost/twitter_clone_v3");
 
 /* view engine setup */
-app.set('views', path.join(__dirname, 'views'));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 /* configure the server */
