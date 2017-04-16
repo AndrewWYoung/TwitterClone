@@ -8,6 +8,7 @@ const express               = require("express"),
     routes                  = require("./routes"),
     User                    = require("./models/user"),
     path                    = require("path"),
+    session                 = require("express-session"),
     PORT                    = 3001,
     seedDB                  = require("./seeds"),
     app                     = express();
@@ -23,10 +24,10 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); // Must use _method to use alternative routes such as DELETE & PUT
-app.use(require("express-session")({
+app.use(session({
     secret: "Twitter Clone Secret Login Strategy",
     resave: false,
-    saveUnitialized: false
+    saveUninitialized: false
 }));
 
 // Setup Passportjs Auth
