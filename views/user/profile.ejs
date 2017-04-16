@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+	<div class="container">
+		<div class="jumbotron text-center">
+			<h1><%= currentUser.username %>'s Profile</h1>
+			<p><strong>Email:</strong> <%= currentUser.email %></p>
+			<p><strong>Joined:</strong> <%= currentUser.date.toString().substring(4, 15) %></p>
+			<ul class="list-inline">
+				<li><strong>Followers:</strong> <%= currentUser.meta.followers %></li>
+				<li><strong>Following:</strong> <%= currentUser.meta.following %></li>
+				<li><strong>Likes:</strong> <%= currentUser.meta.likes %></li>
+			</ul>
+		</div>
+	</div>
+
+<% include ../partials/footer %>

@@ -1,3 +1,6 @@
+body {
+
+}
 .navbar-brand {
     text-align: center;
 	transform: translateX(-50%);
@@ -158,7 +161,7 @@ span.glyphicon{
     padding-bottom: 1.022%;
     text-align: center;
     color: #f8f8f8;
-    background: url("https://photos-3.dropbox.com/t/2/AAAHL26AkJ9HuoD1-l4SDhoDZ5LAEjOBKLCPVUrP0-8jOg/12/587120064/jpeg/32x32/1/_/1/2/michal-parzuchowski-43274.jpg/EKTkjN0EGE0gAigC/rcdeqKfgECCOOjN-VK-nejwcVWcneAtbU3-XU3wwahA?size=32x32&size_mode=5");
+    background: url("/images/background.jpg");
     background-size: cover;
 }
 

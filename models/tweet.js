@@ -7,10 +7,14 @@ var tweetSchema = new mongoose.Schema({
     tweet: String,
     date: {type: Date, default: Date.now},
     meta: {
-    	likes: {type: Number, default: 0},
-    	retweets: {type: Number, default: 0},
-    	replies: {type: Number, default: 0}
+        likes: {type: Number, default: 0},
+        retweets: {type: Number, default: 0},
+        replies: {type: Number, default: 0}
     },
+    user: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"

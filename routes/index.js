@@ -2,6 +2,7 @@
 
 const router = require("express").Router();
 const Tweet = require("../models/tweet");
+const user = require("./user.js");
 const twitterIcon = "https://img.clipartfest.com/672f88933a5add7f407647d3ac640baf_circle-twitter-icon-twitter-icon-clipart_512-512.png";
 
 
@@ -36,5 +37,8 @@ router.post("/tweets", function(req, res) {
         }
     });
 });
+
+// INCLUDE USER ROUTES from user.js file
+router.use("/", user);
 
 module.exports = router;
