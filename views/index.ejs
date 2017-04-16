@@ -6,7 +6,11 @@
                     <div style="width: 30%; margin: 25px auto;">
                         <form action="/tweets" method="POST">
                             <div class="form-group">
-                                <input class="form-control" type="text" name="tweet" placeholder="Tweet">
+
+                                <input id="tweetBox" class="form-control" type="text" maxlength="200" onkeyup="limitTextCount('tweetBox', 'tweetCount', 200);" onkeydown="limitTextCount('tweetBox', 'tweetCount', 200);" name="tweet" placeholder="Tweet">
+                                <br>
+                                <p id="tweetCount">200 charachter(s) to go..</p>
+
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
@@ -14,42 +18,54 @@
                         </form>
                     </div>
             </header>
-        <% } %>
+            <% } %>
 
-        <div class="row" style="width: 75%; margin: auto;">
-            <% tweets.forEach(function(tweet){ %>
-                <div class="row" style="border-bottom: 1px solid black; margin-bottom: 15px; padding: 10px;">
-                    <div class="col-md-1">
-                        <div class="thumbnail" style="height: 50px; width: 50px; margin: auto;">
-                            <img src="<%= tweet.image %>">
-                        </div>
-                    </div>
-                    <div class="col-md-11">
-                        <p><%= tweet.user.username %></p>
-                        <h3><%= tweet.tweet %></h3>
-                        <ul class='list-inline'>
-                            <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i> <%= tweet.meta.replies %></li>
-                            <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i> <%= tweet.meta.retweets %></li>
-                            <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i> <%= tweet.meta.likes %></li>
-                        </ul>
-                        <p><%= tweet.date.toString().substring(0, 21) %></p>
-                        <% if(currentUser){ %>
-                            <% if(currentUser.username == tweet.user.username){ %>
-                                <!-- 
+                <div class="row" style="width: 75%; margin: auto;">
+                    <% tweets.forEach(function(tweet){ %>
+                        <div class="row" style="border-bottom: 1px solid black; margin-bottom: 15px; padding: 10px;">
+                            <div class="col-md-1">
+                                <div class="thumbnail" style="height: 50px; width: 50px; margin: auto;">
+                                    <img src="<%= tweet.image %>">
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <p>
+                                    <%= tweet.user.username %>
+                                </p>
+                                <h3>
+                                    <%= tweet.tweet %>
+                                </h3>
+                                <ul class='list-inline'>
+                                    <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i>
+                                        <%= tweet.meta.replies %>
+                                    </li>
+                                    <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i>
+                                        <%= tweet.meta.retweets %>
+                                    </li>
+                                    <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i>
+                                        <%= tweet.meta.likes %>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <%= tweet.date.toString().substring(0, 21) %>
+                                </p>
+                                <% if(currentUser){ %>
+                                    <% if(currentUser.username == tweet.user.username){ %>
+                                        <!-- 
                                 We have to use ?_method (method-override) to use the DELETE route
                                 that we are using in our routes/index.js file 
                                 -->
-                                <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
-                                    <button class='btn btn-danger'>Delete</button>
-                                </form>  
-                            <% } %>
-                        <% } %>
-                    </div>
+                                        <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
+                                            <button class='btn btn-danger'>Delete</button>
+                                        </form>
+                                        <% } %>
+                                            <% } %>
+                            </div>
+                        </div>
+                        <% }); %>
                 </div>
-                <% }); %>
-        </div>
 
     </div>
 
 
-<%include partials/footer %>
+    <%include partials/footer %>
