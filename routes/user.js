@@ -25,10 +25,12 @@ router.post("/register", function(req, res){
     });
 });
 
+// LOGIN SHOW PAGE
 router.get("/login", function(req, res){
     res.render("user/login");
 });
 
+// LOGIN-> POST ROUTE AUTHENTICATION
 router.post("/login", passport.authenticate("local", 
     {
         successRedirect: "/tweets",
@@ -42,10 +44,13 @@ router.get("/logout", function(req, res){
     res.redirect("/");
 });
 
+// SHOW PROFILE PAGE
 router.get("/profile", isLoggedIn, function(req, res){
     res.render("user/profile.ejs");
 });
 
+
+// Check if loggedin MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
