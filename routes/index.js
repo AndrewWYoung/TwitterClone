@@ -66,6 +66,8 @@ router.delete("/tweets/:id", function(req, res){
                 }
             }
         });
+    } else {
+        res.redirect("/tweets");
     }
 });
 
