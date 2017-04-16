@@ -38,6 +38,21 @@ router.post("/tweets", function(req, res) {
     });
 });
 
+// DELETE - delete tweet from DB using MongoDB ID
+router.delete("/tweets/:id", function(req, res){
+    // Find the Tweet in the Database and remove it
+    // /tweets/:id is the route that we are using to delete tweets
+    // You get the :id from the route using "req.params.id"
+    Tweet.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+            res.redirect("/tweets");
+        } else {
+            res.redirect("/tweets");
+        }
+    });
+});
+
 // INCLUDE USER ROUTES from user.js file
 router.use("/", user);
 

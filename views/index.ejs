@@ -29,6 +29,12 @@
                         <p><%= tweet.name %></p>
                         <h3><%= tweet.tweet %></h3>
                         <p><%= tweet.date.toString().substring(0, 21) %></p>
+
+                        <!-- We have to use ?_method (method-override) to use the DELETE route
+                             that we are using in our routes/index.js file -->
+                        <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
+                            <button class='btn btn-danger'>Delete</button>
+                        </form>
                     </div>
                 </div>
                 <% }); %>

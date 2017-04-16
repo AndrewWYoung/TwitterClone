@@ -2,6 +2,7 @@ const express               = require("express"),
     LocalStrategy           = require("passport-local"),
     //passportLocalMongoose   = require("passport-local-mongoose"),
     passport                = require("passport"),
+    methodOverride          = require("method-override"),
     bodyParser              = require("body-parser"),
     mongoose                = require("mongoose"),
     routes                  = require("./routes"),
@@ -15,6 +16,7 @@ mongoose.connect("mongodb://localhost/twitter_clone_v3");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method")); // Must use _method to use alternative routes such as DELETE & PUT
 
 app.use(require("express-session")({
     secret: "Twitter Clone Secret Login Strategy",
