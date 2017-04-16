@@ -3,19 +3,24 @@
 		<div class='jumbotron'>
 			<h3>Sign up</h3>
 			<form action='/register' method='POST'>
+			
 				<div class='form-group'>
 				  <label for='name'>Username:</label>
-				  <input type='text' name='username' placeholder='username' class='form-control'>
+				  <input type='text' name='username' placeholder='username' class='form-control' required>
 				</div>
-        <div class='form-group'>
-          <label for='email'>Email:</label>
-          <input type='email' name='email' placeholder='email' class='form-control'>
-        </div>
+
+		        <div class='form-group'>
+		          <label for='email'>Email:</label>
+		          <input type='email' name='email' placeholder='email' class='form-control' required>
+		        </div>
+
 				<div class='form-group'>
 				  <label for='password'>Password:</label>
-				  <input type='password' name='password' placeholder='password' class='form-control'>
+				  <input type='password' name='password' placeholder='password' class='form-control' required>
 				</div>
+
 				<input type='submit' value='Sign Up' class='btn btn-default'>
+
 			</form>
 		</div>
 	</div>
