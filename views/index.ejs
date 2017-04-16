@@ -1,21 +1,20 @@
 <% include partials/header %>
     <div class="container">
-        <header class="jumbotron">
-            <h1 style="text-align: center">Create a New Tweet</a>
-                <div style="width: 30%; margin: 25px auto;">
-                    <form action="/tweets" method="POST">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="name" placeholder="name">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="tweet" placeholder="tweet">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
-                        </div>
-                    </form>
-                </div>
-        </header>
+        <% if(currentUser){ %>
+            <header class="jumbotron">
+                <h1 style="text-align: center">Create a New Tweet</a>
+                    <div style="width: 30%; margin: 25px auto;">
+                        <form action="/tweets" method="POST">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="tweet" placeholder="Tweet">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
+                            </div>
+                        </form>
+                    </div>
+            </header>
+        <% } %>
 
         <div class="row" style="width: 75%; margin: auto;">
             <% tweets.forEach(function(tweet){ %>
@@ -26,9 +25,25 @@
                         </div>
                     </div>
                     <div class="col-md-11">
-                        <p><%= tweet.name %></p>
+                        <p><%= tweet.user.username %></p>
                         <h3><%= tweet.tweet %></h3>
+                        <ul class='list-inline'>
+                            <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i> <%= tweet.meta.replies %></li>
+                            <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i> <%= tweet.meta.retweets %></li>
+                            <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i> <%= tweet.meta.likes %></li>
+                        </ul>
                         <p><%= tweet.date.toString().substring(0, 21) %></p>
+                        <% if(currentUser){ %>
+                            <% if(currentUser.username == tweet.user.username){ %>
+                                <!-- 
+                                We have to use ?_method (method-override) to use the DELETE route
+                                that we are using in our routes/index.js file 
+                                -->
+                                <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
+                                    <button class='btn btn-danger'>Delete</button>
+                                </form>  
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
                 <% }); %>

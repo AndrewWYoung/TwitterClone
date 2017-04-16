@@ -2,8 +2,7 @@ var mongoose = require("mongoose");
 
 // SCHEMA SETUP 
 var tweetSchema = new mongoose.Schema({
-    name: String,
-    image: String,
+    image: {type: String, default: "https://img.clipartfest.com/672f88933a5add7f407647d3ac640baf_circle-twitter-icon-twitter-icon-clipart_512-512.png"},
     tweet: String,
     date: {type: Date, default: Date.now},
     meta: {
@@ -11,14 +10,13 @@ var tweetSchema = new mongoose.Schema({
         retweets: {type: Number, default: 0},
         replies: {type: Number, default: 0}
     },
-    user: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    }],
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment"
-    }]
+    user: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    }
 });
 
 module.exports = mongoose.model("Tweet", tweetSchema);
