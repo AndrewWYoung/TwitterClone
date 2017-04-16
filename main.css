@@ -234,6 +234,14 @@ span.glyphicon{
     height: 140px;
     margin-bottom: -40px;
 }
+#tweetCount {
+    margin-top: -25px;
+    margin-left: 80%;
+}
+#tweetCount > p {
+	font-size: 10px;
+    text-align: right;
+}
 #tweetForm button {
 	background-color: #478AAA;
     border-color: #478AAA;
