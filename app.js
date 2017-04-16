@@ -7,17 +7,22 @@ const express               = require("express"),
     mongoose                = require("mongoose"),
     routes                  = require("./routes"),
     User                    = require("./models/user"),
+    path                    = require('path'),
     PORT                    = 3001,
     seedDB                  = require("./seeds"),
     app                     = express();
 
-/* configure server */
+/* connect to database */
 mongoose.connect("mongodb://localhost/twitter_clone_v3");
-app.use(bodyParser.urlencoded({ extended: true }));
+
+/* view engine setup */
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
+
+/* configure the server */
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); // Must use _method to use alternative routes such as DELETE & PUT
-
 app.use(require("express-session")({
     secret: "Twitter Clone Secret Login Strategy",
     resave: false,
