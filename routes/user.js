@@ -14,31 +14,43 @@ router.get("/register", function(req, res){
 // CREATE /signup - Create new user, Log user in, then redirect
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username, email: req.body.email});
-    User.register(newUser, req.body.password, function(err, user){
-    	if(err){
-    		console.log(err);
-    		return res.render("user/signup");
-    	}
-    	passport.authenticate("local")(req, res, function(){
-    		res.redirect("/tweets");
-    	});
+    User.register(newUser, req.body.password, function(err){
+        if(err){
+            console.log(err);
+            return res.render("user/signup");
+        }
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/tweets");
+        });
     });
 });
 
 router.get("/login", function(req, res){
-	res.render("user/login");
+    res.render("user/login");
 });
 
 router.post("/login", passport.authenticate("local", 
     {
-    	successRedirect: "/tweets",
-    	failureRedirect: "/login"
-    }), function(req, res){
-});
+        successRedirect: "/tweets",
+        failureRedirect: "/login"
+    }), function(){
+    }
+);
 
 router.get("/logout", function(req, res){
-	req.logout();
-	res.redirect("/");
+    req.logout();
+    res.redirect("/");
 });
+
+router.get("/profile", isLoggedIn, function(req, res){
+    res.render("user/profile.ejs");
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;

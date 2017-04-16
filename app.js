@@ -1,13 +1,13 @@
 const express               = require("express"),
     LocalStrategy           = require("passport-local"),
-    passportLocalMongoose   = require("passport-local-mongoose"),
+    //passportLocalMongoose   = require("passport-local-mongoose"),
     passport                = require("passport"),
     bodyParser              = require("body-parser"),
     mongoose                = require("mongoose"),
     routes                  = require("./routes"),
     User                    = require("./models/user"),
     PORT                    = 3001,
-    seedDB                  = require("./seeds");
+    seedDB                  = require("./seeds"),
     app                     = express();
 
 /* configure server */
