@@ -1,8 +1,8 @@
-#Twitter Clone
+# Twitter Clone
 
-###A FreeCodeCamp project
+### A FreeCodeCamp project
 
-##About Project
+## About Project
 
 ## Getting Started
 
@@ -11,4 +11,4 @@
 3. ensure mongodb is running in your terminal
 4. run node app in terminal
 
-##Steps before submitting a pull request
+## Steps before submitting a pull request
