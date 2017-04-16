@@ -1,18 +1,20 @@
 <% include partials/header %>
     <div class="container">
-        <header class="jumbotron">
-            <h1 style="text-align: center">Create a New Tweet</a>
-                <div style="width: 30%; margin: 25px auto;">
-                    <form action="/tweets" method="POST">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="tweet" placeholder="Tweet">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
-                        </div>
-                    </form>
-                </div>
-        </header>
+        <% if(currentUser){ %>
+            <header class="jumbotron">
+                <h1 style="text-align: center">Create a New Tweet</a>
+                    <div style="width: 30%; margin: 25px auto;">
+                        <form action="/tweets" method="POST">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="tweet" placeholder="Tweet">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
+                            </div>
+                        </form>
+                    </div>
+            </header>
+        <% } %>
 
         <div class="row" style="width: 75%; margin: auto;">
             <% tweets.forEach(function(tweet){ %>
