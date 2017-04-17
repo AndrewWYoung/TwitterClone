@@ -24,13 +24,13 @@
 	<div class="row">
 		<div class="col-md-3" id="user-information">
 			<div class="thumbnail" id="user-image">
-				<img src="<%= profile.userimage %>">
+				<img src="<%= profile.user.image %>">
 			</div>
 			<h2><%= profile.user.firstname + " " + profile.user.lastname %></h2>
-			<p><%= profile.description %></p>
+			<p><%= profile.user.description %></p>
 			<p><%= profile.user.location %></p>
-			<p>Joined: <%= profile.date.toLocaleDateString() %></p>
-			<p>Born on: <%= profile.user.birthday.toLocaleDateString() %></p>
+			<p>Joined <%= profile.joinDate.toDateString().substring(4, 15) %></p>
+			<p>Born on <%= profile.user.birthday %></p>
 		</div>
 		<div class="col-md-6">
 			<div class="panel panel-default">

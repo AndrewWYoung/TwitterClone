@@ -53,7 +53,7 @@
                 </span>
             </div><!-- /.input-group -->
             <% if(currentUser){ %>
-                <a href="/profile" class="btn btn-default miniProfile"></a>
+                <a href="/<%= currentUser.username %>" class="btn btn-default miniProfile"></a>
                 <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <% } %>
             

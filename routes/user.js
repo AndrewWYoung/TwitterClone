@@ -13,7 +13,26 @@ router.get("/register", function(req, res){
 
 // CREATE /signup - Create new user, Log user in, then redirect
 router.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username, email: req.body.email});
+
+    // Correct Birthday to format that is easy to read
+    var mydate = new Date(req.body.birthday);
+    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"][mydate.getMonth()];
+    var usersBirthday = month + " " + mydate.getDate() + ", " + mydate.getFullYear();
+
+    var newUser = new User(
+        {
+            user: {
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                location: req.body.location,
+                birthday: usersBirthday,
+                email: req.body.email,
+                description: "Hello World, I'm glad to be here."
+            },
+            username: req.body.username
+        });
+
     User.register(newUser, req.body.password, function(err){
         if(err){
             console.log(err);

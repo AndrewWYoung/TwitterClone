@@ -7,13 +7,15 @@ var UserSchema = new mongoose.Schema({
         lastname: String,
         location: String,
         birthday: String,
+        email: String,
+        image: {type: String, default: "/images/blank-profile.png"},
+        /* bgImage: type: String, 
+        to be used on profile page eventually */
+        description: String
     },
     username: String,
     passport: String,
-    email: String,
-    userimage: {type: String, default: "/images/blank-profile.png"},
-    description: String,
-    date: {type: Date, default: Date.now},
+    joinDate: {type: Date, default: Date.now},
     meta: {
         tweets: {type: Number, default: 0},
         likes: {type: Number, default: 0},
