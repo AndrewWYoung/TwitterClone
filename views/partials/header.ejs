@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +53,7 @@
                 </span>
             </div><!-- /.input-group -->
             <% if(currentUser){ %>
-                <a href="/profile" class="btn btn-default miniProfile"></a>
+                <a href="/<%= currentUser.username %>" class="btn btn-default miniProfile"></a>
                 <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <% } %>
             
@@ -66,7 +64,7 @@
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Sign Up</a>
                 <% } else { %>
-                    <li><a href="#">Signed In As <strong><%= currentUser.username %></strong></a></li>
+                    <li><p class="navbar-text">Signed In As <strong><%= currentUser.username %></strong></p></li>
                     <li><a href="/logout">Logout</a></li>
                 <% } %>
             </ul>

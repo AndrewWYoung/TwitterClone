@@ -3,16 +3,36 @@
 		<div class='jumbotron twitter'>
 			<h1 class="text-center">Sign up</h1>
 			<form action='/register' method='POST'>
-			
+
+				<div class='form-group'>
+				  <label for='firstname'>First Name:</label>
+				  <input type='text' name='firstname' placeholder='First Name' class='form-control' required>
+				</div>
+
+				<div class='form-group'>
+				  <label for='lastname'>Last Name:</label>
+				  <input type='text' name='lastname' placeholder='Last Name' class='form-control' required>
+				</div>
+
+				<div class='form-group'>
+		          <label for='location'>Location:</label>
+		          <input type='text' name='location' placeholder='Location' class='form-control' required>
+		        </div>
+
+		        <div class='form-group'>
+		          <label for='birthday'>Birthday:</label>
+		          <input type='date' name='birthday' class='form-control' required>
+		        </div>
+
+				<div class='form-group'>
+		          <label for='email'>Email:</label>
+		          <input type='email' name='email' placeholder='email' class='form-control' required>
+		        </div>
+
 				<div class='form-group'>
 				  <label for='name'>Username:</label>
 				  <input type='text' name='username' placeholder='username' class='form-control' required>
 				</div>
-
-		        <div class='form-group'>
-		          <label for='email'>Email:</label>
-		          <input type='email' name='email' placeholder='email' class='form-control' required>
-		        </div>
 
 				<div class='form-group'>
 				  <label for='password'>Password:</label>
@@ -25,4 +45,4 @@
 		</div>
 	</div>
 
-    <% include ../partials/footer %>
+<% include ../partials/footer %>

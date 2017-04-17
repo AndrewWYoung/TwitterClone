@@ -49,17 +49,19 @@
                                 <p>
                                     <%= tweet.date.toString().substring(0, 21) %>
                                 </p>
+                                <!-- If there is a user logged in -->
                                 <% if(currentUser){ %>
+                                    <!-- check to see if user logged in owns this tweet -->
                                     <% if(currentUser.username == tweet.user.username){ %>
                                         <!-- 
-                                We have to use ?_method (method-override) to use the DELETE route
-                                that we are using in our routes/index.js file 
-                                -->
+                                            We have to use ?_method (method-override) to use the DELETE route
+                                            that we are using in our routes/index.js file 
+                                        -->
                                         <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
                                             <button class='btn btn-danger'>Delete</button>
                                         </form>
-                                        <% } %>
-                                            <% } %>
+                                    <% } %>
+                                <% } %>
                             </div>
                         </div>
                         <% }); %>
