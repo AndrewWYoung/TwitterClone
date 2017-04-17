@@ -34,11 +34,13 @@ span.glyphicon{
 }
 
 .miniProfile {
-	background: url("https://photos-4.dropbox.com/t/2/AACgKWR0JKC3H-VCqxNyvAMjX2Nt4EAR-bEWfL85TX6dsw/12/587120064/png/32x32/1/_/1/2/miniProfile.png/EKTkjN0EGEwgAigC/bJILk76kHWY_wzkddcXDoPLgT_l4NO_XZ6r4m0l6LMg?size=32x32&size_mode=5");
-    background-size: cover;
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
+  width: 40px;
+  height: 40px;
+	background: url("/images/blank-profile.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  
 }
 
 .btn-info {

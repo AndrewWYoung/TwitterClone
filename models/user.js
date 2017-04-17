@@ -5,7 +5,7 @@ var UserSchema = new mongoose.Schema({
     username: String,
     passport: String,
     email: String,
-    userimage: String,
+    userimage: {type: String, default: "/images/blank-profile.png"},
     description: String,
     date: {type: Date, default: Date.now},
     meta: {
