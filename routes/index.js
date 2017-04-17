@@ -16,10 +16,10 @@ router.get("/tweets", function(req, res) {
     //
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), "gi");
-        /* searches tweets based on search query */
+        // searches tweets based on search query
         Tweet.find({ tweet: regex }, function(err, allTweets) {
-            console.log("SEARCH TEST");
-            console.log(regex);
+            console.log("SEARCH TEST:");
+            console.log("Regex: " + regex);
             if (err) {
                 console.log(err);
             } else {
@@ -28,6 +28,8 @@ router.get("/tweets", function(req, res) {
                 res.render("index", { tweets: allTweets });
             }
         });
+    // No search query, Find all tweets
+    // Eventually find only tweets from those who the user follows
     } else {
         //
         Tweet.find({}, function(err, allTweets) {

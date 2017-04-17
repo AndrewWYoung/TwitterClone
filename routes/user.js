@@ -71,8 +71,12 @@ router.get("/:username", function(req, res) {
             console.log(err);
             res.redirect("/tweets"); // No profile/Error redirect to /tweets page
         } else {
-            // Show profile page & send profile variable for EJS
-            res.render("user/profile.ejs", { profile: user });
+            if(user){
+                // Show profile page & send profile variable for EJS
+                res.render("user/profile.ejs", { profile: user });
+            } else {
+                res.redirect("/tweets");
+            }
         }
     });
 });
