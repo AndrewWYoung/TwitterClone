@@ -3,83 +3,99 @@
 }
 
 html {
-  width: 100%;
-}
-
-body {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     width: 100%;
 }
 
+body {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+}
+
+
+/* Search box */
+
+.searchBar {
+    display: inline-block;
+}
+
+
 /* USER-PANEL on NewIndex.ejs */
+
 #profile-background {
-  margin: 0;
-  padding: 0;
-  top: -20px;
-  background: #1DA1F2;
-  width: 100%;
-  height: 160px;
+    margin: 0;
+    padding: 0;
+    top: -20px;
+    background: #1DA1F2;
+    width: 100%;
+    height: 160px;
 }
 
 #user-information {
-  position: relative;
-  left: 40px;
-  top: -200px !important;
+    position: relative;
+    left: 40px;
+    top: -200px !important;
 }
 
 #user-image {
-  width: 75% !important;
+    width: 75% !important;
 }
 
-#user-panel{
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  width: 100%;
-  margin-top: 0;
-  margin-bottom: 10px;
-  padding: 0;
-  padding-top: 8px;
-  padding-bottom: 8px;
+#user-panel {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 #user-info {
-  text-align: center;
+    text-align: center;
 }
 
 #user-info ul {
-  display: inline !important;
+    display: inline !important;
 }
 
 #edit-profile {
-  float: right;
-  margin-right: 50px;
+    float: right;
+    margin-right: 50px;
 }
 
+
 /* NAVBAR */
+
 .navbar-brand {
     text-align: center;
-	transform: translateX(-50%);
+    transform: translateX(-50%);
     left: 50%;
     position: absolute;
     width: 200px;
 }
+
 .navbar-default {
     background-color: #0084b4;
     border-color: #0084b4;
 }
+
 .navbar-default .navbar-nav>li>a {
     color: white;
 }
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
     color: black;
     background-color: transparent;
 }
 
 .navbar-text {
-  color: white !important;
+    color: white !important;
 }
 
-span.glyphicon{
+span.glyphicon {
     position: relative;
     top: 4px;
     font-size: 1.4em;
@@ -87,144 +103,163 @@ span.glyphicon{
 }
 
 .miniProfile {
-  width: 40px;
-  height: 40px;
-	background: url("/images/blank-profile.png");
-  background-size: cover;
-  width: 40px;
-  height: 40px;
-  
+    width: 40px;
+    height: 40px;
+    background: url("/images/blank-profile.png");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
 }
 
 .btn-info {
-	margin-left: 10px;
+    margin-left: 10px;
     height: 40px;
 }
+
 #cards {
-  width: 20px;
-  margin: 0% 40% 12% 40%;
-  position: relative;
-  -webkit-animation: spread 0.6s 1s forwards ease-out;
-  animation: spread 0.6s 1s forwards ease-out;
-  -webkit-transform-origin: 0 100%;
-  transform-origin: 0 100%;
+    width: 20px;
+    margin: 0% 40% 12% 40%;
+    position: relative;
+    -webkit-animation: spread 0.6s 1s forwards ease-out;
+    animation: spread 0.6s 1s forwards ease-out;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
 }
 
 .card {
-  -webkit-transform-origin: 0 120%;
-  transform-origin: 0 120%;
-  height: 2em;
-  width: 1.5em;
-  cursor: default;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  border: 1px solid #DCDCDC;
-  position: absolute;
-  background: #EDEEEE;
-  transition: all .2s;
+    -webkit-transform-origin: 0 120%;
+    transform-origin: 0 120%;
+    height: 2em;
+    width: 1.5em;
+    cursor: default;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    position: absolute;
+    background: #EDEEEE;
+    transition: all .2s;
 }
+
 .card span {
     position: relative;
-  opacity: .8;
-  font-size: .8em;
+    opacity: .8;
+    font-size: .8em;
     top: -.3em;
-  margin-left: -.8em;
-  padding: 0;
-  transition: all .3s;
+    margin-left: -.8em;
+    padding: 0;
+    transition: all .3s;
 }
+
 .black {
     color: black;
 }
+
 .red {
     color: darkred;
 }
 
 .card:nth-child(1) {
-  -webkit-animation: spread-1 0.6s 1s forwards ease-out;
-  animation: spread-1 0.6s 1s forwards ease-out;
+    -webkit-animation: spread-1 0.6s 1s forwards ease-out;
+    animation: spread-1 0.6s 1s forwards ease-out;
 }
+
 .card:nth-child(2) {
-  -webkit-animation: spread-2 0.6s 1s forwards ease-out;
-  animation: spread-2 0.6s 1s forwards ease-out;
+    -webkit-animation: spread-2 0.6s 1s forwards ease-out;
+    animation: spread-2 0.6s 1s forwards ease-out;
 }
+
 .card:nth-child(3) {
-  -webkit-animation: spread-3 0.6s 1s forwards ease-out;
-  animation: spread-3 0.6s 1s forwards ease-out;
+    -webkit-animation: spread-3 0.6s 1s forwards ease-out;
+    animation: spread-3 0.6s 1s forwards ease-out;
 }
+
 .card:nth-child(4) {
-  -webkit-animation: spread-4 0.6s 1s forwards ease-out;
-  animation: spread-4 0.6s 1s forwards ease-out;
+    -webkit-animation: spread-4 0.6s 1s forwards ease-out;
+    animation: spread-4 0.6s 1s forwards ease-out;
 }
+
 .card:nth-child(5) {
-  -webkit-animation: spread-5 0.6s 1s forwards ease-out;
-  animation: spread-5 0.6s 1s forwards ease-out;
+    -webkit-animation: spread-5 0.6s 1s forwards ease-out;
+    animation: spread-5 0.6s 1s forwards ease-out;
 }
 
 @-webkit-keyframes spread {
-  to {
-    -webkit-transform: rotate(-10deg);
-  }
+    to {
+        -webkit-transform: rotate(-10deg);
+    }
 }
+
 @keyframes spread {
-  to {
-    transform: rotate(-10deg);
-  }
+    to {
+        transform: rotate(-10deg);
+    }
 }
+
 @-webkit-keyframes spread-1 {
-  to {
-    -webkit-transform: rotate(-24deg);
-  }
+    to {
+        -webkit-transform: rotate(-24deg);
+    }
 }
+
 @keyframes spread-1 {
-  to {
-    transform: rotate(-24deg);
-  }
+    to {
+        transform: rotate(-24deg);
+    }
 }
+
 @-webkit-keyframes spread-2 {
-  to {
-    -webkit-transform: rotate(-12deg);
-  }
+    to {
+        -webkit-transform: rotate(-12deg);
+    }
 }
+
 @keyframes spread-2 {
-  to {
-    transform: rotate(-12deg);
-  }
+    to {
+        transform: rotate(-12deg);
+    }
 }
+
 @-webkit-keyframes spread-3 {
-  to {
-    -webkit-transform: rotate(0deg);
-  }
+    to {
+        -webkit-transform: rotate(0deg);
+    }
 }
+
 @keyframes spread-3 {
-  to {
-    transform: rotate(0deg);
-  }
+    to {
+        transform: rotate(0deg);
+    }
 }
+
 @-webkit-keyframes spread-4 {
-  to {
-    -webkit-transform: rotate(12deg);
-  }
+    to {
+        -webkit-transform: rotate(12deg);
+    }
 }
+
 @keyframes spread-4 {
-  to {
-    transform: rotate(12deg);
-  }
+    to {
+        transform: rotate(12deg);
+    }
 }
+
 @-webkit-keyframes spread-5 {
-  to {
-    -webkit-transform: rotate(24deg);
-  }
+    to {
+        -webkit-transform: rotate(24deg);
+    }
 }
+
 @keyframes spread-5 {
-  to {
-    transform: rotate(24deg);
-  }
+    to {
+        transform: rotate(24deg);
+    }
 }
+
 
 /* LANDING PAGE */
 
 #landing {
-	width: 100%;
+    width: 100%;
     min-height: 100%;
     background-size: cover;
     position: relative;
@@ -245,27 +280,25 @@ span.glyphicon{
     .intro-message {
         padding-bottom: 15%;
     }
-
-    .intro-message > h1 {
+    .intro-message>h1 {
         font-size: 3em;
     }
-
-    ul.intro-social-buttons > li {
+    ul.intro-social-buttons>li {
         display: block;
         padding: 0;
     }
-
-    ul.intro-social-buttons > li:last-child {
+    ul.intro-social-buttons>li:last-child {
         margin-bottom: 0;
     }
-
     .intro-divider {
         width: 100%;
     }
 }
+
 .suit {
-	font-size: 1.2em;
+    font-size: 1.2em;
 }
+
 .network-name {
     text-transform: uppercase;
     font-size: 14px;
@@ -273,14 +306,17 @@ span.glyphicon{
     letter-spacing: 2px;
 }
 
+
 /* TWEETS PAGE */
+
 .myJumbotron {
-	background-color: #ACD0E1;
-    -webkit-box-shadow: 0px 1px 5px 0px rgba(51,51,51,1);
-    -moz-box-shadow: 0px 1px 5px 0px rgba(51,51,51,1);
-    box-shadow: 0px 1px 5px 0px rgba(51,51,51,1);
+    background-color: #ACD0E1;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
+    box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
 }
-.myJumbotron > h1 {
+
+.myJumbotron>h1 {
     text-align: center;
 }
 
@@ -288,46 +324,54 @@ span.glyphicon{
     width: 30%;
     margin: 25px auto;
 }
-#tweetBox{
+
+#tweetBox {
     resize: none;
     height: 140px;
     margin-bottom: -40px;
 }
+
 #tweetForm button {
-	background-color: #478AAA;
+    background-color: #478AAA;
     border-color: #478AAA;
-    -webkit-box-shadow: 0px 1px 3px 0px rgba(51,51,51,1);
-    -moz-box-shadow: 0px 1px 3px 0px rgba(51,51,51,1);
-    box-shadow: 0px 1px 3px 0px rgba(51,51,51,1);
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(51, 51, 51, 1);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(51, 51, 51, 1);
+    box-shadow: 0px 1px 3px 0px rgba(51, 51, 51, 1);
 }
+
 #feed {
     width: 75%;
     margin: auto;
 }
+
 #feed .row {
     background-color: #eee;
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 10px;
-    -webkit-box-shadow: 0px 1px 5px 0px rgba(51,51,51,1);
-    -moz-box-shadow: 0px 1px 5px 0px rgba(51,51,51,1);
-    box-shadow: 0px 1px 5px 0px rgba(51,51,51,1);
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
+    box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
 }
+
 #feed .thumbnail {
-    height: 100px; 
-    width: 100px; 
+    height: 100px;
+    width: 100px;
     margin: 25px auto;
     border-radius: 50%;
 }
+
 #feed .username {
     font-weight: 700;
     padding: 0;
     margin-bottom: -10px;
 }
+
 #feed .tweet {
     font-size: 17px;
     margin-left: 20px;
 }
+
 #feed .list-inline {
     margin-left: 10px;
 }

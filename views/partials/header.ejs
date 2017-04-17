@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,36 +39,45 @@
             </div>
 
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a></li>
-        </ul>
-        <div class="navbar-form navbar-right">
-            <div class="input-group form-group">
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </span>
-            </div><!-- /.input-group -->
-            <% if(currentUser){ %>
-                <a href="/<%= currentUser.username %>" class="btn btn-default miniProfile"></a>
-                <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <% } %>
-            
-            </div><!-- /.navbar-form -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> Notifications</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a></li>
+                </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <% if(!currentUser){ %>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign Up</a>
-                <% } else { %>
-                    <li><p class="navbar-text">Signed In As <strong><%= currentUser.username %></strong></p></li>
-                    <li><a href="/logout">Logout</a></li>
-                <% } %>
-            </ul>
+                <!-- Search bar -->
+                <div class="navbar-form navbar-right">
+                    <form action="/tweets" method="GET" class="searchBar">
+                        <div class="input-group form-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search">
+                            <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </span>
+                        </div>
+                        <!-- /.input-group -->
+                    </form>
+
+                    <% if(currentUser){ %>
+                        <a href="/<%= currentUser.username %>" class="btn btn-default miniProfile"></a>
+                        <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <% } %>
+
+                </div>
+                <!-- /.navbar-form -->
+
+                <ul class="nav navbar-nav navbar-right">
+                    <% if(!currentUser){ %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Sign Up</a>
+                            <% } else { %>
+                                <li>
+                                    <p class="navbar-text">Signed In As <strong><%= currentUser.username %></strong></p>
+                                </li>
+                                <li><a href="/logout">Logout</a></li>
+                                <% } %>
+                </ul>
 
             </div>
             <!-- /.navbar-collapse -->
