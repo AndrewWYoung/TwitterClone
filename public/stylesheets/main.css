@@ -19,6 +19,17 @@ body {
 }
 
 
+/* New Tweet Area */
+
+#tweetBox {
+    width: 100%;
+}
+
+#tweetCount {
+    padding-top: 20px;
+}
+
+
 /* USER-PANEL on NewIndex.ejs */
 
 #profile-background {

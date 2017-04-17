@@ -1,22 +1,22 @@
 <% include partials/header %>
     <div class="container">
         <% if(currentUser){ %>
-            <header class="jumbotron">
-                <h1 style="text-align: center">Create a New Tweet</a>
-                    <div style="width: 30%; margin: 25px auto;">
-                        <form action="/tweets" method="POST">
-                            <div class="form-group">
+            <header class="jumbotron twitter" style="width: 75%; margin: 0 auto; margin-bottom: 50px; padding: 20px;">
+                <h2 style="text-align: center">Create a New Tweet</h2>
+                <div style="width: 75%; margin: 25px auto;">
+                    <form action="/tweets" method="POST">
+                        <div class="form-group">
 
-                                <input id="tweetBox" class="form-control" type="text" maxlength="200" onkeyup="limitTextCount('tweetBox', 'tweetCount', 200);" onkeydown="limitTextCount('tweetBox', 'tweetCount', 200);" name="tweet" placeholder="Tweet">
-                                <br>
-                                <p id="tweetCount">200 character(s) to go..</p>
+                            <textarea id="tweetBox" class="form-control" type="text" maxlength="200" onkeyup="limitTextCount('tweetBox', 'tweetCount', 200);" onkeydown="limitTextCount('tweetBox', 'tweetCount', 200);" name="tweet" placeholder="Tweet"></textarea>
+                            <br>
 
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-lg btn-primary btn-block">Tweet!</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <p id="tweetCount">200 character(s) to go..</p>
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-default"><i class="fa fa-twitter" aria-hidden="true" style="padding-right: 10px;"></i>Tweet!</button>
+                        </div>
+                    </form>
+                </div>
             </header>
             <% } %>
 
@@ -60,8 +60,8 @@
                                         <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
                                             <button class='btn btn-danger'>Delete</button>
                                         </form>
-                                    <% } %>
-                                <% } %>
+                                        <% } %>
+                                            <% } %>
                             </div>
                         </div>
                         <% }); %>
