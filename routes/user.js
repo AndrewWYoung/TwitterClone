@@ -58,23 +58,32 @@ router.post("/login", passport.authenticate("local",
     }
 );
 
+// LOGOUT ROUTE
 router.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
 });
 
-// SHOW PROFILE PAGE
-router.get("/profile", isLoggedIn, function(req, res){
-    res.render("user/profile.ejs");
+// /username PROFILE ROUTE
+router.get("/:username", function(req, res) {
+    User.findOne({ username: req.params.username }, function(err, user) {
+        if (err) {
+            console.log(err);
+            res.redirect("/tweets"); // No profile/Error redirect to /tweets page
+        } else {
+            // Show profile page & send profile variable for EJS
+            res.render("user/profile.ejs", { profile: user });
+        }
+    });
 });
 
-
+/*
 // Check if loggedin MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect("/login");
-}
+} */
 
 module.exports = router;
