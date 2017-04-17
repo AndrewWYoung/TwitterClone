@@ -26,6 +26,10 @@ body {
     background-color: transparent;
 }
 
+.navbar-text {
+  color: white !important;
+}
+
 span.glyphicon{
     position: relative;
     top: 4px;
