@@ -2,8 +2,57 @@
     box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+}
+
 body {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    width: 100%;
+}
+
+/* USER-PANEL on NewIndex.ejs */
+#profile-background {
+  margin: 0;
+  padding: 0;
+  top: -20px;
+  background: #1DA1F2;
+  width: 100%;
+  height: 160px;
+}
+
+#user-information {
+  position: relative;
+  left: 40px;
+  top: -200px !important;
+}
+
+#user-image {
+  width: 75% !important;
+}
+
+#user-panel{
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#user-info {
+  text-align: center;
+}
+
+#user-info ul {
+  display: inline !important;
+}
+
+#edit-profile {
+  float: right;
+  margin-right: 50px;
 }
 
 /* NAVBAR */

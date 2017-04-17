@@ -2,7 +2,8 @@
 
 const router = require("express").Router();
 const Tweet = require("../models/tweet");
-const user = require("./user.js");
+const User  = require("../models/user");
+const userRoutes = require("./user.js");
 
 
 /* show home page */
@@ -71,6 +72,18 @@ router.delete("/tweets/:id", function(req, res){
 });
 
 // INCLUDE USER ROUTES from user.js file
-router.use("/", user);
+router.use("/", userRoutes);
+
+router.get("/:username", function(req, res){
+    User.findOne({username: req.params.username}, function(err, user){
+        if(err){
+            console.log(err);
+            res.redirect("/tweets");
+        } else {
+            res.render("profile.ejs", {profile: user});
+        }
+    });
+});
+
 
 module.exports = router;

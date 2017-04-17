@@ -1,0 +1,49 @@
+<% include partials/header %>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12" id="profile-background">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+		  <div id="user-panel">
+		  	<div id="user-info">
+			    <ul class="list-inline">
+					<li>Tweets<br><%= profile.meta.tweets %></li>
+					<li>Following<br><%= profile.meta.following %></li>
+					<li>Followers<br><%= profile.meta.followers %></li>
+					<li>Likes<br><%= profile.meta.likes %></li>
+					<!-- Check if CurrentUser is the same as profile viewing and show this button if so -->
+					<li id="edit-profile"><a href="#" class="btn btn-default">Edit Profile</a></li>
+				</ul>
+			</div>
+		  </div>
+		</div>
+	</div><!-- /.row -->
+	<div class="row">
+		<div class="col-md-3" id="user-information">
+			<div class="thumbnail" id="user-image">
+				<img src="<%= profile.userimage %>">
+			</div>
+			<h2><%= profile.user.firstname + " " + profile.user.lastname %></h2>
+			<p><%= profile.description %></p>
+			<p><%= profile.user.location %></p>
+			<p>Joined: <%= profile.date.toLocaleDateString() %></p>
+			<p>Born on: <%= profile.user.birthday.toLocaleDateString() %></p>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+  			<div class="panel-heading">Tweets</div>
+			  <div class="panel-body">
+			    Display Tweets here
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-3">
+
+		</div>
+	</div><!-- /.row -->
+</div> <!-- /.container-fluid -->
+
+<% include partials/footer %>
