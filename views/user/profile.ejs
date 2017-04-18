@@ -1,49 +1,106 @@
 <% include ../partials/header %>
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-12" id="profile-background">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-		  <div id="user-panel">
-		  	<div id="user-info">
-			    <ul class="list-inline">
-					<li>Tweets<br><%= profile.meta.tweets %></li>
-					<li>Following<br><%= profile.meta.following %></li>
-					<li>Followers<br><%= profile.meta.followers %></li>
-					<li>Likes<br><%= profile.meta.likes %></li>
-					<!-- Check if CurrentUser is the same as profile viewing and show this button if so -->
-					<li id="edit-profile"><a href="#" class="btn btn-default">Edit Profile</a></li>
-				</ul>
-			</div>
-		  </div>
-		</div>
-	</div><!-- /.row -->
-	<div class="row">
-		<div class="col-md-3" id="user-information">
-			<div class="thumbnail" id="user-image">
-				<img src="<%= profile.user.image %>">
-			</div>
-			<h2><%= profile.user.firstname + " " + profile.user.lastname %></h2>
-			<p><%= profile.user.description %></p>
-			<p><%= profile.user.location %></p>
-			<p>Joined <%= profile.joinDate.toDateString().substring(4, 15) %></p>
-			<p>Born on <%= profile.user.birthday %></p>
-		</div>
-		<div class="col-md-6">
-			<div class="panel panel-default">
-  			<div class="panel-heading">Tweets</div>
-			  <div class="panel-body">
-			    Display Tweets here
-			  </div>
-			</div>
-		</div>
-		<div class="col-md-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" id="profile-background">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="user-panel">
+                    <div id="user-info">
+                        <ul class="list-inline">
+                            <li>Tweets<br>
+                                <%= profile.meta.tweets %>
+                            </li>
+                            <li>Following<br>
+                                <%= profile.meta.following %>
+                            </li>
+                            <li>Followers<br>
+                                <%= profile.meta.followers %>
+                            </li>
+                            <li>Likes<br>
+                                <%= profile.meta.likes %>
+                            </li>
+                            <!-- Check if CurrentUser is the same as profile viewing and show this button if so -->
+                            <li id="edit-profile"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Profile</a></li>
+                            <!-- Modal to edit profile -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal Content -->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Edit Profile</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/tweets?_method=PUT" method="POST">
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" placeholder="First Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" placeholder="Last Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" placeholder="Location">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" placeholder="Profile Image URL">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                                            </form>
 
-		</div>
-	</div><!-- /.row -->
-</div> <!-- /.container-fluid -->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-<% include ../partials/footer %>
+
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-3" id="user-information">
+                    <div class="thumbnail" id="user-image">
+                        <img src="<%= profile.user.image %>">
+                    </div>
+                    <h2>
+                        <%= profile.user.firstname + " " + profile.user.lastname %>
+                    </h2>
+                    <p>
+                        <%= profile.user.description %>
+                    </p>
+                    <p>
+                        <%= profile.user.location %>
+                    </p>
+                    <p>Joined
+                        <%= profile.joinDate.toDateString().substring(4, 15) %>
+                    </p>
+                    <p>Born on
+                        <%= profile.user.birthday %>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Tweets</div>
+                        <div class="panel-body">
+                            Display Tweets here
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+        <% include ../partials/footer %>
