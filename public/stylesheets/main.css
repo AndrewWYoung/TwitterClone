@@ -64,19 +64,41 @@ body {
     padding: 0;
     padding-top: 8px;
     padding-bottom: 8px;
-}
-
-#user-info {
     text-align: center;
 }
 
-#user-info ul {
+#user-meta {
     display: inline !important;
 }
 
 #edit-profile {
     float: right;
     margin-right: 50px;
+}
+
+#profile-description {
+    width: 80%;
+}
+
+.tweet-image {
+    height: 50px; 
+    width: 50px;
+}
+
+.col-tweet {
+    padding-left: 25px !important;
+}
+
+.tweet-user-date {
+    margin-bottom: 0;
+}
+
+.delete-form {
+    display: inline; 
+    float: right; 
+    position: relative; 
+    top: -25px; 
+    margin-bottom: -20px
 }
 
 
