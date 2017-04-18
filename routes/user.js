@@ -81,13 +81,47 @@ router.get("/:username", function(req, res) {
     });
 });
 
-/*
+router.put("/:username", isLoggedIn, function(req, res){
+    if(res.locals.currentUser.username == req.params.username){
+        // Current Logged In user is the same as the profile being edited
+        User.findOne({username: req.params.username}, function(err, profile){
+            if(err){
+                console.log(err);
+                res.redirect("/tweets");
+            } else {
+                profile.user.firstname      = req.body.firstname;
+                profile.user.lastname       = req.body.lastname;
+                profile.user.description    = req.body.description;
+                profile.user.location       = req.body.location;
+                profile.user.image          = req.body.image;
+
+                profile.save(function(err){
+                    if(err){
+                        // Couldn't save the profile
+                        console.log(err);
+                        res.redirect("/tweets");
+                    } else {
+                        // Profile Updated & Saved successfully
+                        res.redirect("/" + req.params.username);
+                    }
+                });
+            }
+        });
+    } else {
+        // Current Logged in user is not the same as the profile being edited
+        // Add better error handling later
+        console.log("ERROR: Current logged in user is NOT the same as the profile being edited!");
+        res.redirect("/tweets");
+    }
+});
+
+
 // Check if loggedin MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect("/login");
-} */
+} 
 
 module.exports = router;
