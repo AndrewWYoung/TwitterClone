@@ -64,19 +64,41 @@ body {
     padding: 0;
     padding-top: 8px;
     padding-bottom: 8px;
-}
-
-#user-info {
     text-align: center;
 }
 
-#user-info ul {
+#user-meta {
     display: inline !important;
 }
 
 #edit-profile {
     float: right;
     margin-right: 50px;
+}
+
+#profile-description {
+    width: 80%;
+}
+
+.tweet-image {
+    height: 50px; 
+    width: 50px;
+}
+
+.col-tweet {
+    padding-left: 25px !important;
+}
+
+.tweet-user-date {
+    margin-bottom: 0;
+}
+
+.delete-form {
+    display: inline; 
+    float: right; 
+    position: relative; 
+    top: -25px; 
+    margin-bottom: -20px
 }
 
 
@@ -131,146 +153,6 @@ span.glyphicon {
     height: 40px;
 }
 
-#cards {
-    width: 20px;
-    margin: 0% 40% 12% 40%;
-    position: relative;
-    -webkit-animation: spread 0.6s 1s forwards ease-out;
-    animation: spread 0.6s 1s forwards ease-out;
-    -webkit-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-}
-
-.card {
-    -webkit-transform-origin: 0 120%;
-    transform-origin: 0 120%;
-    height: 2em;
-    width: 1.5em;
-    cursor: default;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    border: 1px solid #DCDCDC;
-    position: absolute;
-    background: #EDEEEE;
-    transition: all .2s;
-}
-
-.card span {
-    position: relative;
-    opacity: .8;
-    font-size: .8em;
-    top: -.3em;
-    margin-left: -.8em;
-    padding: 0;
-    transition: all .3s;
-}
-
-.black {
-    color: black;
-}
-
-.red {
-    color: darkred;
-}
-
-.card:nth-child(1) {
-    -webkit-animation: spread-1 0.6s 1s forwards ease-out;
-    animation: spread-1 0.6s 1s forwards ease-out;
-}
-
-.card:nth-child(2) {
-    -webkit-animation: spread-2 0.6s 1s forwards ease-out;
-    animation: spread-2 0.6s 1s forwards ease-out;
-}
-
-.card:nth-child(3) {
-    -webkit-animation: spread-3 0.6s 1s forwards ease-out;
-    animation: spread-3 0.6s 1s forwards ease-out;
-}
-
-.card:nth-child(4) {
-    -webkit-animation: spread-4 0.6s 1s forwards ease-out;
-    animation: spread-4 0.6s 1s forwards ease-out;
-}
-
-.card:nth-child(5) {
-    -webkit-animation: spread-5 0.6s 1s forwards ease-out;
-    animation: spread-5 0.6s 1s forwards ease-out;
-}
-
-@-webkit-keyframes spread {
-    to {
-        -webkit-transform: rotate(-10deg);
-    }
-}
-
-@keyframes spread {
-    to {
-        transform: rotate(-10deg);
-    }
-}
-
-@-webkit-keyframes spread-1 {
-    to {
-        -webkit-transform: rotate(-24deg);
-    }
-}
-
-@keyframes spread-1 {
-    to {
-        transform: rotate(-24deg);
-    }
-}
-
-@-webkit-keyframes spread-2 {
-    to {
-        -webkit-transform: rotate(-12deg);
-    }
-}
-
-@keyframes spread-2 {
-    to {
-        transform: rotate(-12deg);
-    }
-}
-
-@-webkit-keyframes spread-3 {
-    to {
-        -webkit-transform: rotate(0deg);
-    }
-}
-
-@keyframes spread-3 {
-    to {
-        transform: rotate(0deg);
-    }
-}
-
-@-webkit-keyframes spread-4 {
-    to {
-        -webkit-transform: rotate(12deg);
-    }
-}
-
-@keyframes spread-4 {
-    to {
-        transform: rotate(12deg);
-    }
-}
-
-@-webkit-keyframes spread-5 {
-    to {
-        -webkit-transform: rotate(24deg);
-    }
-}
-
-@keyframes spread-5 {
-    to {
-        transform: rotate(24deg);
-    }
-}
-
-
 /* LANDING PAGE */
 
 #landing {
@@ -289,6 +171,15 @@ span.glyphicon {
     background-color: #0084b4;
     color: white;
     box-shadow: 7px 7px 7px #888888;
+    width: 75% !important;
+    margin: 0 auto; 
+    margin-bottom: 50px; 
+    padding: 20px;
+}
+
+.createATweet {
+    width: 75%; 
+    margin: 25px auto;
 }
 
 @media(max-width:767px) {
@@ -308,10 +199,6 @@ span.glyphicon {
     .intro-divider {
         width: 100%;
     }
-}
-
-.suit {
-    font-size: 1.2em;
 }
 
 .network-name {
@@ -364,14 +251,15 @@ span.glyphicon {
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 10px;
+    height: 115px;
     -webkit-box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
     -moz-box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
     box-shadow: 0px 1px 5px 0px rgba(51, 51, 51, 1);
 }
 
 #feed .thumbnail {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     margin: 25px auto;
     border-radius: 50%;
 }
