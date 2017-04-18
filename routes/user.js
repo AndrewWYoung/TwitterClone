@@ -3,6 +3,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/user.js");
+const Tweet = require("../models/tweet.js");
 
 router.use(require("body-parser").urlencoded({ extended: true }));
 
@@ -66,8 +67,16 @@ router.get("/:username", function(req, res) {
             res.redirect("/tweets"); // No profile/Error redirect to /tweets page
         } else {
             if(user){
-                // Show profile page & send profile variable for EJS
-                res.render("user/profile.ejs", { profile: user, birthday: readableBday(user.user.birthday)});
+                Tweet.find({user: {id: user._id, username: req.params.username}}, function(err, allTweets){
+                    if(err){
+                        console.log(err);
+                        res.redirect("/tweets");
+                    } else {
+                        // Show profile page & send profile variable for EJS
+                        res.render("user/profile.ejs", { profile: user, birthday: readableBday(user.user.birthday), tweets: allTweets});
+                    }
+                });
+                
             } else {
                 res.redirect("/tweets");
             }

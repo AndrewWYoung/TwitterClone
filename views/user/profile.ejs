@@ -104,7 +104,43 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Tweets</div>
                         <div class="panel-body">
-                            Display Tweets here
+                           <% tweets.forEach(function(tweet){ %>
+                                <img  class="thumbnail" style="height: 50px; width: 50px; margin: auto;" src="<%= tweet.image %>">
+                                <p>
+                                    <%= tweet.user.username %>
+                                </p>
+                                <h3>
+                                    <%= tweet.tweet %>
+                                </h3>
+                                <ul class='list-inline'>
+                                    <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i>
+                                        <%= tweet.meta.replies %>
+                                    </li>
+                                    <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i>
+                                        <%= tweet.meta.retweets %>
+                                    </li>
+                                    <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i>
+                                        <%= tweet.meta.likes %>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <%= tweet.date.toString().substring(0, 21) %>
+                                </p>
+                                <!-- If there is a user logged in -->
+                                <% if(currentUser){ %>
+                                    <!-- check to see if user logged in owns this tweet -->
+                                    <% if(currentUser.username == tweet.user.username){ %>
+                                        <!-- 
+                                            We have to use ?_method (method-override) to use the DELETE route
+                                            that we are using in our routes/index.js file 
+                                        -->
+                                        <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
+                                            <button class='btn btn-danger'>Delete</button>
+                                        </form>
+                                    <% } %>
+                                <% } %>
+                            <% }); %>
+                        </div>
                         </div>
                     </div>
                 </div>
