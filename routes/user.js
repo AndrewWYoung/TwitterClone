@@ -14,21 +14,15 @@ router.get("/register", function(req, res){
 // CREATE /signup - Create new user, Log user in, then redirect
 router.post("/register", function(req, res){
 
-    // Correct Birthday to format that is easy to read
-    var mydate = new Date(req.body.birthday);
-    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-        "October", "November", "December"][mydate.getMonth()];
-    var usersBirthday = month + " " + mydate.getDate() + ", " + mydate.getFullYear();
-
     var newUser = new User(
         {
             user: {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 location: req.body.location,
-                birthday: usersBirthday,
+                birthday: req.body.birthday,
                 email: req.body.email,
-                description: "Hello World, I'm glad to be here."
+                description: ""
             },
             username: req.body.username
         });
@@ -73,7 +67,7 @@ router.get("/:username", function(req, res) {
         } else {
             if(user){
                 // Show profile page & send profile variable for EJS
-                res.render("user/profile.ejs", { profile: user });
+                res.render("user/profile.ejs", { profile: user, birthday: readableBday(user.user.birthday)});
             } else {
                 res.redirect("/tweets");
             }
@@ -94,6 +88,7 @@ router.put("/:username", isLoggedIn, function(req, res){
                 profile.user.description    = req.body.description;
                 profile.user.location       = req.body.location;
                 profile.user.image          = req.body.image;
+                profile.user.birthday       = req.body.birthday;
 
                 profile.save(function(err){
                     if(err){
@@ -114,6 +109,14 @@ router.put("/:username", isLoggedIn, function(req, res){
         res.redirect("/tweets");
     }
 });
+
+function readableBday(birthday){
+    var myDate = new Date(birthday);
+    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"][myDate.getMonth()];
+    var usersBirthday = month + " " + (myDate.getDate()+1) + ", " + myDate.getFullYear();
+    return usersBirthday;
+}
 
 
 // Check if loggedin MIDDLEWARE

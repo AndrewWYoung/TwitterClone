@@ -23,7 +23,8 @@
                                 <%= profile.meta.likes %>
                             </li>
                             <!-- Check if CurrentUser is the same as profile viewing and show this button if so -->
-                            <li id="edit-profile"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Profile</a></li>
+                            <% if(currentUser){ if(currentUser.username == profile.username){ %>
+                            <li id="edit-profile"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Profile</a></li><% } } %>
                             <!-- Modal to edit profile -->
                             <div id="myModal" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
@@ -50,6 +51,10 @@
                                                 <div class="form-group">
                                                 	<label class="editProfileLabel" for="location">Location:</label>
                                                     <input class="form-control" name="location" value="<%= profile.user.location %>" type="text" placeholder="Location" required>
+                                                </div>
+                                                <div class="form-group">
+                                                	<label class="editProfileLabel" for="birthday">Birthday:</label>
+                                                    <input class="form-control" name="birthday" value="<%= profile.user.birthday %>" type="date" required>
                                                 </div>
                                                 <div class="form-group">
                                                 	<label class="editProfileLabel" for="image">Profile Image URL:</label>
@@ -92,7 +97,7 @@
                         <%= profile.joinDate.toDateString().substring(4, 15) %>
                     </p>
                     <p>Born on
-                        <%= profile.user.birthday %>
+                        <%= birthday %>
                     </p>
                 </div>
                 <div class="col-md-6">
