@@ -3,6 +3,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/user.js");
+const Tweet = require("../models/tweet.js");
 
 router.use(require("body-parser").urlencoded({ extended: true }));
 
@@ -14,21 +15,15 @@ router.get("/register", function(req, res){
 // CREATE /signup - Create new user, Log user in, then redirect
 router.post("/register", function(req, res){
 
-    // Correct Birthday to format that is easy to read
-    var mydate = new Date(req.body.birthday);
-    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-        "October", "November", "December"][mydate.getMonth()];
-    var usersBirthday = month + " " + mydate.getDate() + ", " + mydate.getFullYear();
-
     var newUser = new User(
         {
             user: {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 location: req.body.location,
-                birthday: usersBirthday,
+                birthday: req.body.birthday,
                 email: req.body.email,
-                description: "Hello World, I'm glad to be here."
+                description: ""
             },
             username: req.body.username
         });
@@ -72,8 +67,16 @@ router.get("/:username", function(req, res) {
             res.redirect("/tweets"); // No profile/Error redirect to /tweets page
         } else {
             if(user){
-                // Show profile page & send profile variable for EJS
-                res.render("user/profile.ejs", { profile: user });
+                Tweet.find({user: {id: user._id, username: req.params.username}}, function(err, allTweets){
+                    if(err){
+                        console.log(err);
+                        res.redirect("/tweets");
+                    } else {
+                        // Show profile page & send profile variable for EJS
+                        res.render("user/profile.ejs", { profile: user, birthday: readableBday(user.user.birthday), tweets: allTweets});
+                    }
+                });
+                
             } else {
                 res.redirect("/tweets");
             }
@@ -81,13 +84,56 @@ router.get("/:username", function(req, res) {
     });
 });
 
-/*
+router.put("/:username", isLoggedIn, function(req, res){
+    if(res.locals.currentUser.username == req.params.username){
+        // Current Logged In user is the same as the profile being edited
+        User.findOne({username: req.params.username}, function(err, profile){
+            if(err){
+                console.log(err);
+                res.redirect("/tweets");
+            } else {
+                profile.user.firstname      = req.body.firstname;
+                profile.user.lastname       = req.body.lastname;
+                profile.user.description    = req.body.description;
+                profile.user.location       = req.body.location;
+                profile.user.image          = req.body.image;
+                profile.user.birthday       = req.body.birthday;
+
+                profile.save(function(err){
+                    if(err){
+                        // Couldn't save the profile
+                        console.log(err);
+                        res.redirect("/tweets");
+                    } else {
+                        // Profile Updated & Saved successfully
+                        res.redirect("/" + req.params.username);
+                    }
+                });
+            }
+        });
+    } else {
+        // Current Logged in user is not the same as the profile being edited
+        // Add better error handling later
+        console.log("ERROR: Current logged in user is NOT the same as the profile being edited!");
+        res.redirect("/tweets");
+    }
+});
+
+function readableBday(birthday){
+    var myDate = new Date(birthday);
+    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"][myDate.getMonth()];
+    var usersBirthday = month + " " + (myDate.getDate()+1) + ", " + myDate.getFullYear();
+    return usersBirthday;
+}
+
+
 // Check if loggedin MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect("/login");
-} */
+} 
 
 module.exports = router;

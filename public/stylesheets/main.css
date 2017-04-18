@@ -30,7 +30,11 @@ body {
 }
 
 
-/* USER-PANEL on NewIndex.ejs */
+/* user/profile.ejs styles */
+
+.editProfileLabel {
+    float: left !important;
+}
 
 #profile-background {
     margin: 0;

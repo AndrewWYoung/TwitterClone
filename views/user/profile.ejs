@@ -23,7 +23,8 @@
                                 <%= profile.meta.likes %>
                             </li>
                             <!-- Check if CurrentUser is the same as profile viewing and show this button if so -->
-                            <li id="edit-profile"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Profile</a></li>
+                            <% if(currentUser){ if(currentUser.username == profile.username){ %>
+                            <li id="edit-profile"><a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Profile</a></li><% } } %>
                             <!-- Modal to edit profile -->
                             <div id="myModal" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
@@ -34,18 +35,30 @@
                                             <h4 class="modal-title">Edit Profile</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/tweets?_method=PUT" method="POST">
+                                            <form action="/<%= profile.username %>?_method=PUT" method="POST">
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="First Name">
+                                                	<label class="editProfileLabel" for="firstname">First Name:</label>
+                                                    <input class="form-control" name="firstname" value="<%= profile.user.firstname %>" type="text" placeholder="First Name" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Last Name">
+                                                	<label class="editProfileLabel" for="lastname">Last Name:</label>
+                                                    <input class="form-control" name="lastname" value="<%= profile.user.lastname %>" type="text" placeholder="Last Name" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Location">
+                                                	<label class="editProfileLabel" for="description">Description:</label>
+                                                	<textarea class="form-control" name="description"><%= profile.user.description %></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Profile Image URL">
+                                                	<label class="editProfileLabel" for="location">Location:</label>
+                                                    <input class="form-control" name="location" value="<%= profile.user.location %>" type="text" placeholder="Location" required>
+                                                </div>
+                                                <div class="form-group">
+                                                	<label class="editProfileLabel" for="birthday">Birthday:</label>
+                                                    <input class="form-control" name="birthday" value="<%= profile.user.birthday %>" type="date" required>
+                                                </div>
+                                                <div class="form-group">
+                                                	<label class="editProfileLabel" for="image">Profile Image URL:</label>
+                                                    <input class="form-control" name="image" value="<%= profile.user.image %>" type="text" placeholder="Profile Image URL" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <button class="btn btn-lg btn-primary btn-block">Submit</button>
@@ -84,14 +97,50 @@
                         <%= profile.joinDate.toDateString().substring(4, 15) %>
                     </p>
                     <p>Born on
-                        <%= profile.user.birthday %>
+                        <%= birthday %>
                     </p>
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">Tweets</div>
                         <div class="panel-body">
-                            Display Tweets here
+                           <% tweets.forEach(function(tweet){ %>
+                                <img  class="thumbnail" style="height: 50px; width: 50px; margin: auto;" src="<%= tweet.image %>">
+                                <p>
+                                    <%= tweet.user.username %>
+                                </p>
+                                <h3>
+                                    <%= tweet.tweet %>
+                                </h3>
+                                <ul class='list-inline'>
+                                    <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i>
+                                        <%= tweet.meta.replies %>
+                                    </li>
+                                    <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i>
+                                        <%= tweet.meta.retweets %>
+                                    </li>
+                                    <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i>
+                                        <%= tweet.meta.likes %>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <%= tweet.date.toString().substring(0, 21) %>
+                                </p>
+                                <!-- If there is a user logged in -->
+                                <% if(currentUser){ %>
+                                    <!-- check to see if user logged in owns this tweet -->
+                                    <% if(currentUser.username == tweet.user.username){ %>
+                                        <!-- 
+                                            We have to use ?_method (method-override) to use the DELETE route
+                                            that we are using in our routes/index.js file 
+                                        -->
+                                        <form action='/tweets/<%= tweet._id %>?_method=DELETE' method='POST'>
+                                            <button class='btn btn-danger'>Delete</button>
+                                        </form>
+                                    <% } %>
+                                <% } %>
+                            <% }); %>
+                        </div>
                         </div>
                     </div>
                 </div>
