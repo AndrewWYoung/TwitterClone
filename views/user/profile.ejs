@@ -36,16 +36,24 @@
                                         <div class="modal-body">
                                             <form action="/tweets?_method=PUT" method="POST">
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="First Name">
+                                                	<label class="editProfileLabel" for="firstname">First Name:</label>
+                                                    <input class="form-control" name="firstname" value="<%= profile.user.firstname %>" type="text" placeholder="First Name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Last Name">
+                                                	<label class="editProfileLabel" for="lastname">Last Name:</label>
+                                                    <input class="form-control" name="lastname" value="<%= profile.user.lastname %>" type="text" placeholder="Last Name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Location">
+                                                	<label class="editProfileLabel" for="description">Description:</label>
+                                                	<textarea class="form-control" name="description"><%= profile.user.description %></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" placeholder="Profile Image URL">
+                                                	<label class="editProfileLabel" for="location">Location:</label>
+                                                    <input class="form-control" name="location" value="<%= profile.user.location %>" type="text" placeholder="Location">
+                                                </div>
+                                                <div class="form-group">
+                                                	<label class="editProfileLabel" for="image">Profile Image URL:</label>
+                                                    <input class="form-control" name="image" value="<%= profile.user.image %>" type="text" placeholder="Profile Image URL">
                                                 </div>
                                                 <div class="form-group">
                                                     <button class="btn btn-lg btn-primary btn-block">Submit</button>
