@@ -13,7 +13,7 @@ var data = [
         meta: {likes: 10}
     },
     {
-        user: {username: "default"},
+        user: {username: "admin"},
         tweet: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.",
         meta: {retweets: 25}
     }
@@ -37,7 +37,7 @@ function createTweets(){
 }
 
 function removeAllTweets(){
-    Tweet.remove({}, function(err){
+    Tweet.remove({user: {username: "admin"}}, function(err){
         if(err) {
             console.log(err);
         } else {
