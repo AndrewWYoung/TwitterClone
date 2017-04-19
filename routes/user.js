@@ -73,6 +73,8 @@ router.get("/:username", function(req, res) {
                         res.redirect("/tweets");
                     } else {
                         // Show profile page & send profile variable for EJS
+                        // Sort tweets by date
+                        allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
                         res.render("user/profile.ejs", { profile: user, birthday: readableBday(user.user.birthday), tweets: allTweets});
                     }
                 });
@@ -84,6 +86,7 @@ router.get("/:username", function(req, res) {
     });
 });
 
+// UPDATE route for user
 router.put("/:username", isLoggedIn, function(req, res){
     if(res.locals.currentUser.username == req.params.username){
         // Current Logged In user is the same as the profile being edited
@@ -119,6 +122,8 @@ router.put("/:username", isLoggedIn, function(req, res){
     }
 });
 
+
+// Translate Birthday date into readable birthday
 function readableBday(birthday){
     var myDate = new Date(birthday);
     var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",

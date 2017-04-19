@@ -15,23 +15,47 @@ router.get("/", function(req, res) {
 router.get("/tweets", function(req, res) {
     //
     if (req.query.search) {
-        const regex = new RegExp(escapeRegex(req.query.search), "gi");
-        // searches tweets based on search query
-        Tweet.find({ tweet: regex }, function(err, allTweets) {
-            console.log("SEARCH TEST:");
-            console.log("Regex: " + regex);
-            if (err) {
-                console.log(err);
+        //console.log("Searching user DB for: " + req.query.search);
+        // Try to search for user with that username to see if it is a user in the DB
+        User.findOne({username: req.query.search}, function(err, profile){
+            if(err){
+                console.error(err);
+                res.redirect("/tweets");
             } else {
-                // Sort tweets by date
-                allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
-                res.render("index", { tweets: allTweets });
+                //console.log(req.query.search);
+                if(profile){
+                    Tweet.find({user: {id: profile._id, username: profile.username}}, function(err, allTweets){
+                        //console.log("Searched for all tweets by " + profile.username);
+                        if(err){
+                            console.error(err);
+                            res.redirect("/tweets");
+                        } else {
+                            // Sort tweets by date (latest first) & show them on index page
+                            allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+                            res.render("index", { tweets: allTweets });
+                        }
+                    });
+                } else {
+                    // User is not found in DB
+                    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+                    // searches tweets based on search query
+                    Tweet.find({ tweet: regex }, function(err, allTweets) {
+                        //console.log("SEARCH TEST:");
+                        //console.log("Regex: " + regex);
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            // Sort tweets by date
+                            allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+                            res.render("index", { tweets: allTweets });
+                        }
+                    });
+                }
             }
         });
-    // No search query, Find all tweets
-    // Eventually find only tweets from those who the user follows
     } else {
-        //
+        // No search query, Find all tweets
+        // Eventually find only tweets from those who the user follows
         Tweet.find({}, function(err, allTweets) {
             if (err) {
                 console.log(err);
