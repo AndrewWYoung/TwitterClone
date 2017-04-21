@@ -92,7 +92,21 @@
             <!-- Middle Tweets Panel -->
             <div class="col-md-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Tweets</div>
+                    <div class="panel-heading">Tweets
+                        <form action="/<%= profile.username %>" method="GET">
+                            <div class="form-group" id="sortByDate">
+                                <select name="sortByDate" class="form-control" onchange="this.form.submit()">
+                                    <% if(sortByDate === "0"){ %>
+                                        <option value="0">Latest First</option>
+                                        <option value="1">Oldest First</option>
+                                    <% } else { %>
+                                        <option value="1">Oldest First</option>
+                                        <option value="0">Latest First</option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
                     <div class="panel-body">
                         <% tweets.forEach(function(tweet){ %>
                             <div class="row">
