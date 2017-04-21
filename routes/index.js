@@ -31,7 +31,7 @@ router.get("/tweets", function(req, res) {
                             res.redirect("/tweets");
                         } else {
                             // Sort tweets by date (latest first) & show them on index page
-                            allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+                            allTweets = (req.query.sortByDate == "1" ? oldestTweetsByDate(allTweets) : latestTweetsByDate(allTweets));
                             res.render("index", { tweets: allTweets });
                         }
                     });
@@ -46,7 +46,7 @@ router.get("/tweets", function(req, res) {
                             console.log(err);
                         } else {
                             // Sort tweets by date
-                            allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+                            allTweets = latestTweetsByDate(allTweets);
                             res.render("index", { tweets: allTweets });
                         }
                     });
@@ -61,7 +61,7 @@ router.get("/tweets", function(req, res) {
                 console.log(err);
             } else {
                 // Sort tweets by date
-                allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+                allTweets = latestTweetsByDate(allTweets);
                 res.render("index", { tweets: allTweets });
             }
         });
@@ -134,6 +134,18 @@ router.delete("/tweets/:id", isLoggedIn, function(req, res) {
 
 // INCLUDE USER ROUTES from user.js file
 router.use("/", userRoutes);
+
+// Sort tweets array by date (Latest First)
+function latestTweetsByDate(allTweets){
+    allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+    return allTweets;
+}
+
+// Sort tweets array by date (Oldest First)
+function oldestTweetsByDate(allTweets){
+    allTweets.sort(function(a, b){ return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0); });
+    return allTweets;
+}
 
 // Check if loggedin MIDDLEWARE
 function isLoggedIn(req, res, next){

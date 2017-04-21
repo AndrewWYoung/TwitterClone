@@ -11,6 +11,12 @@ body {
     width: 100%;
 }
 
+#sortByDate {
+    position: absolute;
+    top: 4px;
+    right: 25px;
+    width: 9em;
+}
 
 /* Search box */
 

@@ -74,8 +74,20 @@ router.get("/:username", function(req, res) {
                     } else {
                         // Show profile page & send profile variable for EJS
                         // Sort tweets by date
-                        allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
-                        res.render("user/profile.ejs", { profile: user, birthday: readableBday(user.user.birthday), tweets: allTweets});
+                        var sortByDate = "0";
+                        if(req.query.sortByDate) {
+                            if(req.query.sortByDate == "1"){ 
+                                allTweets = oldestTweetsByDate(allTweets); 
+                                sortByDate = "1"; 
+                            } else {
+                                allTweets = latestTweetsByDate(allTweets);
+                                sortByDate = "0";
+                            }
+                        } else {
+                            allTweets = latestTweetsByDate(allTweets);
+                            sortByDate = "0";
+                        }
+                        res.render("user/profile.ejs", { sortByDate: sortByDate, profile: user, birthday: readableBday(user.user.birthday), tweets: allTweets});
                     }
                 });
                 
@@ -122,6 +134,18 @@ router.put("/:username", isLoggedIn, function(req, res){
     }
 });
 
+
+// Sort tweets array by date (Latest First)
+function latestTweetsByDate(allTweets){
+    allTweets.sort(function(a, b) { return (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0); });
+    return allTweets;
+}
+
+// Sort tweets array by date (Oldest First)
+function oldestTweetsByDate(allTweets){
+    allTweets.sort(function(a, b){ return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0); });
+    return allTweets;
+}
 
 // Translate Birthday date into readable birthday
 function readableBday(birthday){
