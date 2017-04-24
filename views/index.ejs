@@ -20,48 +20,64 @@
             </header>
             <% } %>
 
-        <div class="row" id="feed">
-            <% tweets.forEach(function(tweet){ %>
-                <div class="row">
-                    <!-- Tweet Image -->
-                    <div class="col-sm-1">
-                        <img  class="thumbnail" src="<%= tweet.image %>">
-                    </div><!-- /.col-sm-1 -->
+                <div class="row" id="feed">
+                    <% tweets.forEach(function(tweet){ %>
+                        <div class="row">
+                            <!-- Tweet Image -->
+                            <div class="col-sm-1">
 
-                    <!-- Tweet -->
-                    <div class="col-sm-11 col-tweet">
-                        <p>
-                            <strong><%= tweet.user.username %></strong> | <%= tweet.date.toString().substring(4, 15) %>
-                        </p>
+                                <% if(currentUser) { %>
+                                    <% if(currentUser.username == tweet.user.username){ %>
+                                        <img class="thumbnail" src="<%= currentUser.user.image %>">
+                                        <% } else { %>
+                                            <img class="thumbnail" src="<%= tweet.image %>">
+                                            <% } %>
+                                                <% } %>
 
-                        <p><%= tweet.tweet %></p>
 
-                        <ul class='list-inline'>
-                            <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i>
-                                <%= tweet.meta.replies %>
-                            </li>
-                            <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i>
-                                <%= tweet.meta.retweets %>
-                            </li>
-                            <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i>
-                                <%= tweet.meta.likes %>
-                            </li>
-                        </ul>
+                            </div>
+                            <!-- /.col-sm-1 -->
 
-                        <p><!-- If there is a user logged in & profile viewing is the same as user -->
-                            <% if(currentUser){ %>
-                                <% if(currentUser.username == tweet.user.username){ %>
-                                    <form action='/tweets/<%= tweet._id %>?_method=DELETE' class="delete-form" method='POST'>
-                                        <button class='btn btn-danger btn-xs'>Delete</button>
-                                    </form>
-                                <% } %>
-                            <% } %>
-                        </p>
-                        <hr>
-                    </div><!-- /.col-sm-11 -->
-                </div><!-- /.row -->
-            <% }); %>
-        </div>
+                            <!-- Tweet -->
+                            <div class="col-sm-11 col-tweet">
+                                <p>
+                                    <strong><%= tweet.user.username %></strong> |
+                                    <%= tweet.date.toString().substring(4, 15) %>
+                                </p>
+
+                                <p>
+                                    <%= tweet.tweet %>
+                                </p>
+
+                                <ul class='list-inline'>
+                                    <li><i class="fa fa-reply" aria-hidden="true" alt="Replies: "></i>
+                                        <%= tweet.meta.replies %>
+                                    </li>
+                                    <li><i class="fa fa-retweet" aria-hidden="true" alt="Retweets: "></i>
+                                        <%= tweet.meta.retweets %>
+                                    </li>
+                                    <li><i class="fa fa-heart" aria-hidden="true" alt="Likes: "></i>
+                                        <%= tweet.meta.likes %>
+                                    </li>
+                                </ul>
+
+                                <p>
+                                    <!-- If there is a user logged in & profile viewing is the same as user -->
+                                    <% if(currentUser){ %>
+                                        <% if(currentUser.username == tweet.user.username){ %>
+                                            <form action='/tweets/<%= tweet._id %>?_method=DELETE' class="delete-form" method='POST'>
+                                                <button class='btn btn-danger btn-xs'>Delete</button>
+                                            </form>
+                                            <% } %>
+                                                <% } %>
+                                </p>
+                                <hr>
+                            </div>
+                            <!-- /.col-sm-11 -->
+                        </div>
+                        <!-- /.row -->
+                        <% }); %>
+                </div>
 
     </div>
 

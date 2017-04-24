@@ -60,9 +60,11 @@
                     </form>
 
                     <% if(currentUser){ %>
-                        <a href="/<%= currentUser.username %>" class="btn btn-default miniProfile"></a>
+                        <a href="/<%= currentUser.username %>">
+                            <img src="<%= currentUser.user.image %>" class="miniProfile"> 
+                        </a>
                         <button class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                    <% } %>
+                        <% } %>
                 </div>
                 <!-- /.navbar-form -->
 
